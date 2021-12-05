@@ -1,7 +1,6 @@
 package mg.hotel.reservation.services;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Service;
 import mg.hotel.reservation.ProcessReservationRequest;
 import mg.hotel.reservation.ProcessReservationResponse;
 import mg.hotel.reservation.dao.HotelDao;
+import mg.hotel.reservation.model.ReservationDto;
 import mg.hotel.reservation_agence.Chambre;
 import mg.hotel.reservation_agence.CheckDisponibiliteParAgenceRequest;
 import mg.hotel.reservation_agence.CheckDisponibiliteParAgenceResponse;
@@ -19,6 +19,7 @@ import mg.hotel.reservation_agence.ProcessReservationAgenceRequest;
 import mg.hotel.reservation_agence.ProcessReservationAgenceResponse;
 
 import static java.util.Collections.singletonList;
+import static mg.hotel.reservation.utils.DateUtils.xmlGregorianCalendarToSqlDate;
 
 @Service
 public class HotelService {
@@ -69,9 +70,60 @@ public class HotelService {
     }
 
     public ProcessReservationAgenceResponse processReservationAgence(ProcessReservationAgenceRequest request) {
+        checkModePayement(request);
+        checkPartenariat(request);
+        Integer referencePersonne = savePersonne(request);
+        getReservationDto(request, referencePersonne);
+        String referenceReservation = saveReservation(getReservationDto(request, referencePersonne));
         ProcessReservationAgenceResponse response = new ProcessReservationAgenceResponse();
-        response.setReferenceReservation("REF001PROMO");
-        hotelDao.saveReservation(request);
+        response.setReferenceReservation(referenceReservation);
+        response.setReferenceHotel(request.getReferenceHotel());
+        response.setReferenceChambre(request.getReferenceChambre());
+
         return response;
+    }
+
+    private Integer savePersonne(ProcessReservationAgenceRequest request) {
+        Integer referencePersonne = hotelDao.savePersonne(request.getPersonne());
+        if (referencePersonne == null) {
+            throw new RuntimeException("Echec de la réservation : Problème technique");
+        }
+        return referencePersonne;
+    }
+
+    private String saveReservation(ReservationDto reservation) {
+        Integer referenceReservation = hotelDao.saveReservation(reservation);
+        if (referenceReservation == null) {
+            throw new RuntimeException("Echec de la réservation : Problème technique");
+        }
+        return reservation.getReference();
+    }
+
+    private void checkModePayement(ProcessReservationAgenceRequest request) {
+        boolean isModePayementValid = request
+                .getPayement()
+                .getDateFinValidite()
+                .toGregorianCalendar()
+                .getTime()
+                .after(new Date());
+        if (!isModePayementValid) {
+            throw new RuntimeException("Echec de la réservation : moyen de payement invalide");
+        }
+    }
+
+    private void checkPartenariat(ProcessReservationAgenceRequest request) {
+        List<Float> partenariatPromotion = hotelDao.getPartenariatPromotion(request.getAgence(), request.getReferenceChambre());
+        if (partenariatPromotion.isEmpty()) {
+            throw new RuntimeException("Echec de la réservation : le partenariat n'est plus en vigeur");
+        }
+    }
+
+    private ReservationDto getReservationDto(ProcessReservationAgenceRequest request, Integer referencePersonne) {
+        return new ReservationDto(
+                referencePersonne,
+                request.getReferenceChambre(),
+                "RES-" + new Date().getTime(),
+                xmlGregorianCalendarToSqlDate(request.getDateArrivee()),
+                xmlGregorianCalendarToSqlDate(request.getDateArrivee()));
     }
 }
