@@ -5,7 +5,7 @@
     <xs:element name="checkDisponibiliteParAgenceRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="dateArrivee" type="xs:dateTime"/>
+                <xs:element name="dateArrivee" type="xs:date"/>
                 <xs:element name="dateDepart" type="xs:date"/>
                 <xs:element name="capacite" type="xs:short"/>
                 <xs:element name="agence" type="tns:Agence"/>
