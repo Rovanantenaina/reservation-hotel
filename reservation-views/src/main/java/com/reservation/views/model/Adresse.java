@@ -1,13 +1,12 @@
 package com.reservation.views.model;
 
 public class Adresse {
-
-    private String numero;
-    private String rue;
-    private String lieuDit;
-    private String ville;
-    private String pays;
-    private String geolocalisation;
+    protected String numero;
+    protected String rue;
+    protected String lieuDit;
+    protected String ville;
+    protected String pays;
+    protected String geolocalisation;
 
     public String getNumero() {
         return numero;

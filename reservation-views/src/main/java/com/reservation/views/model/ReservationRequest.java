@@ -1,37 +1,47 @@
 package com.reservation.views.model;
 
-import java.util.Date;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 public class ReservationRequest {
 
-    private String referenceHotel;
-    private String referenceChambre;
-    private Date dateArrivee;
+    private int referenceHotel;
+    private int referenceChambre;
+    private XMLGregorianCalendar dateArrivee;
+    private XMLGregorianCalendar dateSortie;
     private Personne personne;
     private Payement payement;
+    private Agence agence;
 
-    public String getReferenceHotel() {
+    public int getReferenceHotel() {
         return referenceHotel;
     }
 
-    public void setReferenceHotel(String referenceHotel) {
+    public void setReferenceHotel(int referenceHotel) {
         this.referenceHotel = referenceHotel;
     }
 
-    public String getReferenceChambre() {
+    public int getReferenceChambre() {
         return referenceChambre;
     }
 
-    public void setReferenceChambre(String referenceChambre) {
+    public void setReferenceChambre(int referenceChambre) {
         this.referenceChambre = referenceChambre;
     }
 
-    public Date getDateArrivee() {
+    public XMLGregorianCalendar getDateArrivee() {
         return dateArrivee;
     }
 
-    public void setDateArrivee(Date dateArrivee) {
+    public void setDateArrivee(XMLGregorianCalendar dateArrivee) {
         this.dateArrivee = dateArrivee;
+    }
+
+    public XMLGregorianCalendar getDateSortie() {
+        return dateSortie;
+    }
+
+    public void setDateSortie(XMLGregorianCalendar dateSortie) {
+        this.dateSortie = dateSortie;
     }
 
     public Personne getPersonne() {
@@ -48,5 +58,13 @@ public class ReservationRequest {
 
     public void setPayement(Payement payement) {
         this.payement = payement;
+    }
+
+    public Agence getAgence() {
+        return agence;
+    }
+
+    public void setAgence(Agence agence) {
+        this.agence = agence;
     }
 }

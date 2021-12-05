@@ -4,21 +4,10 @@ import java.util.Date;
 
 public class FindHotelRequest {
 
-    private String ville;
     private Date dateArrivee;
     private Date dateDepart;
-    private float prixMin;
-    private float prixMax;
     private short capacite;
-    private short nombreEtoile;
-
-    public String getVille() {
-        return ville;
-    }
-
-    public void setVille(String ville) {
-        this.ville = ville;
-    }
+    private Agence agence;
 
     public Date getDateArrivee() {
         return dateArrivee;
@@ -36,22 +25,6 @@ public class FindHotelRequest {
         this.dateDepart = dateDepart;
     }
 
-    public float getPrixMin() {
-        return prixMin;
-    }
-
-    public void setPrixMin(float prixMin) {
-        this.prixMin = prixMin;
-    }
-
-    public float getPrixMax() {
-        return prixMax;
-    }
-
-    public void setPrixMax(float prixMax) {
-        this.prixMax = prixMax;
-    }
-
     public short getCapacite() {
         return capacite;
     }
@@ -60,11 +33,11 @@ public class FindHotelRequest {
         this.capacite = capacite;
     }
 
-    public short getNombreEtoile() {
-        return nombreEtoile;
+    public Agence getAgence() {
+        return agence;
     }
 
-    public void setNombreEtoile(short nombreEtoile) {
-        this.nombreEtoile = nombreEtoile;
+    public void setAgence(Agence agence) {
+        this.agence = agence;
     }
 }

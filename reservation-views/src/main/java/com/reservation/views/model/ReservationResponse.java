@@ -2,23 +2,23 @@ package com.reservation.views.model;
 
 public class ReservationResponse {
 
-    private String referenceHotel;
-    private String referenceChambre;
+    private int referenceHotel;
+    private int referenceChambre;
     private String referenceReservation;
 
-    public String getReferenceHotel() {
+    public int getReferenceHotel() {
         return referenceHotel;
     }
 
-    public void setReferenceHotel(String referenceHotel) {
+    public void setReferenceHotel(int referenceHotel) {
         this.referenceHotel = referenceHotel;
     }
 
-    public String getReferenceChambre() {
+    public int getReferenceChambre() {
         return referenceChambre;
     }
 
-    public void setReferenceChambre(String referenceChambre) {
+    public void setReferenceChambre(int referenceChambre) {
         this.referenceChambre = referenceChambre;
     }
 

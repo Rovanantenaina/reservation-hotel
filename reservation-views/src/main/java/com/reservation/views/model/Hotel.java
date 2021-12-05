@@ -2,28 +2,21 @@ package com.reservation.views.model;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlElement;
+
 public class Hotel {
-    private String referenceHotel;
-    private String referenceChambre;
+    private String reference;
     private String nom;
     private Adresse adresse;
     private short nombreEtoile;
     private List<Chambre> chambre;
 
-    public String getReferenceHotel() {
-        return referenceHotel;
+    public String getReference() {
+        return reference;
     }
 
-    public void setReferenceHotel(String referenceHotel) {
-        this.referenceHotel = referenceHotel;
-    }
-
-    public String getReferenceChambre() {
-        return referenceChambre;
-    }
-
-    public void setReferenceChambre(String referenceChambre) {
-        this.referenceChambre = referenceChambre;
+    public void setReference(String reference) {
+        this.reference = reference;
     }
 
     public String getNom() {

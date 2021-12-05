@@ -1,13 +1,11 @@
 package com.reservation.views.model;
 
-import java.util.Date;
-
 public class Chambre {
-
-    private String reference;
-    private short nombreLit;
-    private float prix;
-    private Date dateDisponibilite;
+    protected String reference;
+    protected short nombreLit;
+    protected float prix;
+    protected float reductionPartenariat;
+    protected String urlImage;
 
     public String getReference() {
         return reference;
@@ -33,11 +31,19 @@ public class Chambre {
         this.prix = prix;
     }
 
-    public Date getDateDisponibilite() {
-        return dateDisponibilite;
+    public float getReductionPartenariat() {
+        return reductionPartenariat;
     }
 
-    public void setDateDisponibilite(Date dateDisponibilite) {
-        this.dateDisponibilite = dateDisponibilite;
+    public void setReductionPartenariat(float reductionPartenariat) {
+        this.reductionPartenariat = reductionPartenariat;
+    }
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 }

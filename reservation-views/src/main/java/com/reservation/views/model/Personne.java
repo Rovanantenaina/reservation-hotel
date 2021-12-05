@@ -2,15 +2,14 @@ package com.reservation.views.model;
 
 public class Personne {
 
-    private int nom;
-    private String prenom;
-    private Payement payement;
+    protected String nom;
+    protected String prenom;
 
-    public int getNom() {
+    public String getNom() {
         return nom;
     }
 
-    public void setNom(int nom) {
+    public void setNom(String nom) {
         this.nom = nom;
     }
 
@@ -20,13 +19,5 @@ public class Personne {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
-    }
-
-    public Payement getPayement() {
-        return payement;
-    }
-
-    public void setPayement(Payement payement) {
-        this.payement = payement;
     }
 }
