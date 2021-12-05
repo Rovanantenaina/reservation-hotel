@@ -11,6 +11,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.WebApplicationType;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.annotation.ComponentScan;
+
+@SpringBootApplication
 public class ReservationApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
@@ -20,6 +27,11 @@ public class ReservationApplication extends Application {
 
         stage.setScene(scene);
         stage.show();
+    }
+
+    @Override
+    public void init() {
+        SpringApplication.run(getClass()).getAutowireCapableBeanFactory().autowireBean(this);
     }
 
     public static void main(String[] args) {
