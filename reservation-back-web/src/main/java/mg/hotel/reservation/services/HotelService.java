@@ -35,15 +35,6 @@ public class HotelService {
         throw new RuntimeException("Aucune chambre disponible pour le moment");
     }
 
-    private Hotel concatChambre(List<Hotel> hotelsFromDb) {
-        Hotel hotels = hotelsFromDb.get(0);
-        List<Chambre> chambre = hotels.getChambre();
-        List<Chambre> chambresCombinee = hotelsFromDb.stream().flatMap(hotel -> hotel.getChambre().stream()).collect(Collectors.toList());
-        chambre.clear();
-        chambre.addAll(chambresCombinee);
-        return hotels;
-    }
-
     public ProcessReservationAgenceResponse processReservationAgence(ProcessReservationAgenceRequest request) {
         checkModePayement(request);
         checkPartenariat(request);
@@ -56,6 +47,15 @@ public class HotelService {
         response.setReferenceChambre(request.getReferenceChambre());
 
         return response;
+    }
+
+    private Hotel concatChambre(List<Hotel> hotelsFromDb) {
+        Hotel hotels = hotelsFromDb.get(0);
+        List<Chambre> chambre = hotels.getChambre();
+        List<Chambre> chambresCombinee = hotelsFromDb.stream().flatMap(hotel -> hotel.getChambre().stream()).collect(Collectors.toList());
+        chambre.clear();
+        chambre.addAll(chambresCombinee);
+        return hotels;
     }
 
     private Integer savePersonne(ProcessReservationAgenceRequest request) {
