@@ -5,7 +5,7 @@
     <xs:element name="checkDisponibiliteParAgenceRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="dateArrivee" type="xs:date"/>
+                <xs:element name="dateArrivee" type="xs:dateTime"/>
                 <xs:element name="dateDepart" type="xs:date"/>
                 <xs:element name="capacite" type="xs:short"/>
                 <xs:element name="agence" type="tns:Agence"/>
@@ -16,7 +16,7 @@
     <xs:element name="checkDisponibiliteParAgenceResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="hotels" type="tns:Hotel"/>
+                <xs:element name="hotels" type="tns:Hotel" minOccurs="0" maxOccurs="200"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -50,8 +50,7 @@
     <!--    Informations sur la recheche d'hotel-->
     <xs:complexType name="Hotel">
         <xs:sequence>
-            <xs:element name="referenceHotel" type="xs:string"/>
-            <xs:element name="referenceChambre" type="xs:string"/>
+            <xs:element name="reference" type="xs:string"/>
             <xs:element name="nom" type="xs:string"/>
             <xs:element name="adresse" type="tns:Adresse"/>
             <xs:element name="nombreEtoile" type="xs:short"/>
@@ -65,8 +64,7 @@
             <xs:element name="nombreLit" type="xs:short"/>
             <xs:element name="prix" type="xs:float"/>
             <xs:element name="reductionPartenariat" type="xs:float"/>
-            <xs:element name="dateDisponibilite" type="xs:date"/>
-            <xs:element name="imageUrl" type="xs:string" minOccurs="0" maxOccurs="10"/>
+            <xs:element name="urlImage" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
 
@@ -101,7 +99,7 @@
 
     <xs:complexType name="Agence">
         <xs:sequence>
-            <xs:element name="identifiant" type="xs:int"/>
+            <xs:element name="nom" type="xs:string"/>
             <xs:element name="login" type="xs:string"/>
             <xs:element name="password" type="xs:string"/>
         </xs:sequence>
