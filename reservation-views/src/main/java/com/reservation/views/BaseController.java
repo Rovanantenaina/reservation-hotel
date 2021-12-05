@@ -5,8 +5,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class BaseController {
+public abstract class BaseController {
 
     protected void OpenNewTab(String views, int width, int height) throws IOException {
         try {
@@ -21,4 +23,6 @@ public class BaseController {
             throw e;
         }
     }
+
+    public abstract void initialize(URL location, ResourceBundle resources);
 }

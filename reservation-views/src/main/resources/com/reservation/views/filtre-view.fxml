@@ -8,33 +8,34 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="821.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.reservation.views.FiltreHotelController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.reservation.views.FiltreHotelController">
    <children>
-      <Text layoutX="28.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date debut" />
-      <TextField layoutX="625.0" layoutY="166.0" prefHeight="26.0" prefWidth="74.0" />
-      <Text layoutX="290.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Fin" />
-      <Text layoutX="342.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RECHERCHER UN HOTEL" wrappingWidth="142.09454345703125" />
-      <Button fx:id="btnRechercherHotel" layoutX="724.0" layoutY="166.0" mnemonicParsing="false" text="Rechercher" />
-      <Text layoutX="531.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nb personnes" />
-      <DatePicker layoutX="341.0" layoutY="168.0" />
-      <DatePicker layoutX="97.0" layoutY="168.0" />
+      <Text layoutX="23.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date debut" />
+      <TextField fx:id="txtNbPerson" layoutX="754.0" layoutY="163.0" prefHeight="26.0" prefWidth="59.0" />
+      <Text layoutX="340.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Fin" />
+      <Text layoutX="311.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RECHERCHER UN HOTEL" wrappingWidth="200.49456787109375" />
+      <Button fx:id="btnRechercherHotel" layoutX="346.0" layoutY="206.0" mnemonicParsing="false" onAction="#onClickSearchHotel" text="Rechercher" />
+      <Text layoutX="647.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nb personnes" />
+      <DatePicker fx:id="dpDateFin" layoutX="411.0" layoutY="164.0" />
+      <DatePicker fx:id="dpDateDebut" layoutX="108.0" layoutY="164.0" />
       <AnchorPane layoutX="92.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="98.0" prefWidth="673.0">
          <children>
-            <TextField fx:id="txtLoginAgence" layoutX="67.0" layoutY="58.0" />
-            <Text layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" />
-            <TextField fx:id="txtPasswordAgence" layoutX="307.0" layoutY="58.0" />
-            <Text layoutX="225.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe" />
-            <Text layoutX="211.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AGENCES" wrappingWidth="79.69451904296875" />
-            <Button fx:id="btnValidateAgence" layoutX="479.0" layoutY="57.0" mnemonicParsing="false" onAction="#onClickValidateAgence" text="Valider" />
+            <TextField fx:id="txtLoginAgence" layoutX="272.0" layoutY="53.0" prefHeight="26.0" prefWidth="175.0" />
+            <Text layoutX="221.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" />
+            <TextField fx:id="txtPasswordAgence" layoutX="609.0" layoutY="54.0" />
+            <Text layoutX="481.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe" />
+            <Text layoutX="264.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AGENCES" wrappingWidth="79.69451904296875" />
+            <TextField fx:id="txtAgenceName" layoutX="14.0" layoutY="52.0" prefHeight="26.0" prefWidth="175.0" />
          </children>
       </AnchorPane>
-      <TableView layoutX="97.0" layoutY="228.0" prefHeight="215.0" prefWidth="546.0">
+      <TableView fx:id="tbData" layoutX="138.0" layoutY="254.0" prefHeight="215.0" prefWidth="546.0">
         <columns>
-          <TableColumn prefWidth="94.3999252319336" text="Reference" />
-          <TableColumn prefWidth="104.00006103515625" text="Nombres place" />
-            <TableColumn prefWidth="128.79998779296875" text="Prix" />
+          <TableColumn fx:id="reference" prefWidth="94.3999252319336" text="Reference" />
+          <TableColumn fx:id="nombreLit" prefWidth="104.00006103515625" text="Nombres place" />
+            <TableColumn fx:id="prix" prefWidth="128.79998779296875" text="Prix" />
             <TableColumn prefWidth="216.79998168945315" text="Action" />
         </columns>
       </TableView>
+      <Text layoutX="33.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agence" />
    </children>
 </AnchorPane>
