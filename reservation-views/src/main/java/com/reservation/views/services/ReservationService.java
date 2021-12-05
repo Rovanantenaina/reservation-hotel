@@ -2,20 +2,20 @@ package com.reservation.views.services;
 
 import org.springframework.stereotype.Service;
 
-import com.reservation.views.model.FindHotelRequest;
-import com.reservation.views.model.Hotel;
-import com.reservation.views.model.ReservationRequest;
-import com.reservation.views.model.ReservationResponse;
+import mg.reservation.reservationAgence.wsdl.CheckDisponibiliteParAgenceRequest;
+import mg.reservation.reservationAgence.wsdl.Hotel;
+import mg.reservation.reservationAgence.wsdl.ProcessReservationAgenceRequest;
+import mg.reservation.reservationAgence.wsdl.ProcessReservationAgenceResponse;
 
 @Service
 public class ReservationService {
-    public Hotel findPlaceDisponible(FindHotelRequest request) {
+    public Hotel findPlaceDisponible(CheckDisponibiliteParAgenceRequest request) {
         // todo implement
         return new Hotel();
     }
 
-    public ReservationResponse faireReservation(ReservationRequest request) {
+    public ProcessReservationAgenceResponse faireReservation(ProcessReservationAgenceRequest request) {
         // todo implement
-        return new ReservationResponse();
+        return new ProcessReservationAgenceResponse();
     }
 }
