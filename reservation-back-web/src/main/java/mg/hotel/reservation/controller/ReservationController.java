@@ -12,15 +12,15 @@ import mg.hotel.reservation.FindHotelResponse;
 import mg.hotel.reservation.Hotel;
 import mg.hotel.reservation.ProcessReservationRequest;
 import mg.hotel.reservation.ProcessReservationResponse;
-import mg.hotel.reservation.services.HotelService;
+import mg.hotel.reservation.services.HotelStatiqueService;
 
 @Endpoint
 public class ReservationController {
     private static final String NAMESPACE_URI = "http://hotel.mg/reservation";
 
-    private HotelService hotelService;
+    private HotelStatiqueService hotelService;
 
-    public ReservationController(HotelService hotelService) {
+    public ReservationController(HotelStatiqueService hotelService) {
         this.hotelService = hotelService;
     }
 

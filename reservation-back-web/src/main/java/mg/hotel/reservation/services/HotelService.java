@@ -7,8 +7,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import mg.hotel.reservation.ProcessReservationRequest;
-import mg.hotel.reservation.ProcessReservationResponse;
 import mg.hotel.reservation.dao.HotelDao;
 import mg.hotel.reservation.model.ReservationDto;
 import mg.hotel.reservation_agence.Chambre;
@@ -18,7 +16,6 @@ import mg.hotel.reservation_agence.Hotel;
 import mg.hotel.reservation_agence.ProcessReservationAgenceRequest;
 import mg.hotel.reservation_agence.ProcessReservationAgenceResponse;
 
-import static java.util.Collections.singletonList;
 import static mg.hotel.reservation.utils.DateUtils.xmlGregorianCalendarToSqlDate;
 
 @Service
@@ -26,28 +23,6 @@ public class HotelService {
 
     @Autowired
     private HotelDao hotelDao;
-
-    public List<mg.hotel.reservation.Hotel> findHotel(Object creteria) {
-        mg.hotel.reservation.Hotel hotel = new mg.hotel.reservation.Hotel();
-        hotel.setNom("Carlton");
-        hotel.setNombreEtoile((short) 5);
-        hotel.setReferenceHotel("123");
-        hotel.setReferenceChambre("456");
-        return singletonList(hotel);
-    }
-
-    public ProcessReservationResponse processReservation(ProcessReservationRequest processReservation) {
-        if (isPayementValid(processReservation)) {
-            ProcessReservationResponse response = new ProcessReservationResponse();
-            response.setReferenceReservation("REF001");
-            return response;
-        }
-        throw new RuntimeException("Payment non valide");
-    }
-
-    private boolean isPayementValid(ProcessReservationRequest processReservation) {
-        return processReservation.getPayement() != null && processReservation.getPayement().getDateFinValidite() != null && processReservation.getPayement().getDateFinValidite().isValid();
-    }
 
     public CheckDisponibiliteParAgenceResponse checkDisponibiliteParAgence(CheckDisponibiliteParAgenceRequest request) {
         CheckDisponibiliteParAgenceResponse response = new CheckDisponibiliteParAgenceResponse();
