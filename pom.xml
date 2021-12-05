@@ -14,8 +14,8 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>reservation-client</module>
         <module>reservation-back-web</module>
+        <module>reservation-views</module>
     </modules>
 
     <name>reservation-hotel</name>
