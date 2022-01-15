@@ -31,34 +31,5 @@
             <scope>runtime</scope>
         </dependency>
 
-        <dependency>
-            <groupId>wsdl4j</groupId>
-            <artifactId>wsdl4j</artifactId>
-        </dependency>
-
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>jaxb2-maven-plugin</artifactId>
-                <version>2.5.0</version>
-                <executions>
-                    <execution>
-                        <id>xjc</id>
-                        <goals>
-                            <goal>xjc</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <sources>
-                        <source>${project.basedir}/src/main/resources/wsdl/reservations.xsd</source>
-                        <source>${project.basedir}/src/main/resources/wsdl/reservations-agence.xsd</source>
-                    </sources>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>

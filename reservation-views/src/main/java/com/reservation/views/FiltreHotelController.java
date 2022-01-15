@@ -1,24 +1,23 @@
 package com.reservation.views;
 
+import com.reservation.views.model.Agence;
+import com.reservation.views.model.Chambre;
+import com.reservation.views.model.CheckDisponibiliteParAgenceRequest;
+import com.reservation.views.model.Hotel;
 import com.reservation.views.services.ReservationService;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import mg.reservation.reservationAgence.wsdl.Agence;
-import mg.reservation.reservationAgence.wsdl.Chambre;
-import mg.reservation.reservationAgence.wsdl.CheckDisponibiliteParAgenceRequest;
-import mg.reservation.reservationAgence.wsdl.Hotel;
 
 import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
 import java.net.URL;
 import java.time.ZoneId;
-import java.util.*;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.ResourceBundle;
 
 public class FiltreHotelController extends BaseController {
 
@@ -66,27 +65,6 @@ public class FiltreHotelController extends BaseController {
         Date dateArrive = Date.from(dpDateFin.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
         Date dateDepart = Date.from(dpDateFin.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-        XMLGregorianCalendar xmlDateArrive = null;
-        XMLGregorianCalendar xmlDateDepart = null;
-
-        // Gregorian Calendar object creation
-        GregorianCalendar gc = new GregorianCalendar();
-        GregorianCalendar gcDep = new GregorianCalendar();
-
-        // giving current date and time to gc
-        gc.setTime(dateArrive);
-        gcDep.setTime(dateDepart);
-
-        try {
-            xmlDateArrive = DatatypeFactory.newInstance()
-                    .newXMLGregorianCalendar(gc);
-            xmlDateDepart = DatatypeFactory.newInstance()
-                    .newXMLGregorianCalendar(gcDep);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-
         //Remplir l'agence
         agence.setNom(txtAgenceName.getText());
         agence.setLogin(txtLoginAgence.getText());
@@ -94,8 +72,8 @@ public class FiltreHotelController extends BaseController {
         hotelRequest.setAgence(agence);
 
         //Remplir le critere de recherche
-        hotelRequest.setDateArrivee(xmlDateArrive);
-        hotelRequest.setDateDepart(xmlDateDepart);
+        hotelRequest.setDateArrivee(dateArrive);
+        hotelRequest.setDateDepart(dateDepart);
         hotelRequest.setCapacite(nbPerson);
 
         Hotel hotelDispo = reservationService.findPlaceDisponible(hotelRequest);

@@ -3,11 +3,10 @@ package mg.hotel.reservation.mapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import mg.hotel.reservation.model.Adresse;
+import mg.hotel.reservation.model.Chambre;
+import mg.hotel.reservation.model.Hotel;
 import org.springframework.jdbc.core.RowMapper;
-
-import mg.hotel.reservation_agence.Adresse;
-import mg.hotel.reservation_agence.Chambre;
-import mg.hotel.reservation_agence.Hotel;
 
 public class HotelRowMapper implements RowMapper<Hotel> {
     @Override

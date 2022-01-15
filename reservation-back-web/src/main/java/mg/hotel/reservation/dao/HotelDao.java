@@ -5,6 +5,7 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.List;
 
+import mg.hotel.reservation.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -16,13 +17,8 @@ import org.springframework.stereotype.Component;
 
 import mg.hotel.reservation.mapper.HotelRowMapper;
 import mg.hotel.reservation.mapper.PromotionRowMapper;
-import mg.hotel.reservation.model.ReservationDto;
-import mg.hotel.reservation_agence.Agence;
-import mg.hotel.reservation_agence.CheckDisponibiliteParAgenceRequest;
-import mg.hotel.reservation_agence.Hotel;
-import mg.hotel.reservation_agence.Personne;
 
-import static mg.hotel.reservation.utils.DateUtils.xmlGregorianCalendarToSqlDate;
+import static mg.hotel.reservation.utils.DateUtils.DateToSqlDate;
 
 @Component
 @PropertySource("sql/requette.properties")
@@ -49,8 +45,8 @@ public class HotelDao {
         queryParam.put("login", request.getAgence().getLogin());
         queryParam.put("password", request.getAgence().getPassword());
         queryParam.put("effectif", request.getCapacite());
-        queryParam.put("dateEntree", xmlGregorianCalendarToSqlDate(request.getDateArrivee()));
-        queryParam.put("dateSortie", xmlGregorianCalendarToSqlDate(request.getDateDepart()));
+        queryParam.put("dateEntree", DateToSqlDate(request.getDateArrivee()));
+        queryParam.put("dateSortie", DateToSqlDate(request.getDateDepart()));
         return namedParameterJdbcTemplate.query(checkDisponibiliteQuery, queryParam, new HotelRowMapper());
     }
 

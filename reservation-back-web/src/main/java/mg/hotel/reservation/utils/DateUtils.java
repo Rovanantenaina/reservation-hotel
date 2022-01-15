@@ -1,13 +1,12 @@
 package mg.hotel.reservation.utils;
 
-import java.sql.Date;
 
-import javax.xml.datatype.XMLGregorianCalendar;
+import java.util.Date;
 
 public class DateUtils {
-    public static Date xmlGregorianCalendarToSqlDate(XMLGregorianCalendar source) {
+    public static java.sql.Date DateToSqlDate(Date source) {
         if (source != null) {
-            return new Date(source.toGregorianCalendar().getTime().getTime());
+            return new java.sql.Date(source.getTime());
         }
         throw new RuntimeException("Date invalide");
     }

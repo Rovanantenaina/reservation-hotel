@@ -4,19 +4,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import mg.hotel.reservation.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import mg.hotel.reservation.dao.HotelDao;
-import mg.hotel.reservation.model.ReservationDto;
-import mg.hotel.reservation_agence.Chambre;
-import mg.hotel.reservation_agence.CheckDisponibiliteParAgenceRequest;
-import mg.hotel.reservation_agence.CheckDisponibiliteParAgenceResponse;
-import mg.hotel.reservation_agence.Hotel;
-import mg.hotel.reservation_agence.ProcessReservationAgenceRequest;
-import mg.hotel.reservation_agence.ProcessReservationAgenceResponse;
 
-import static mg.hotel.reservation.utils.DateUtils.xmlGregorianCalendarToSqlDate;
+import static mg.hotel.reservation.utils.DateUtils.DateToSqlDate;
 
 @Service
 public class HotelService {
@@ -78,8 +72,6 @@ public class HotelService {
         boolean isModePayementValid = request
                 .getPayement()
                 .getDateFinValidite()
-                .toGregorianCalendar()
-                .getTime()
                 .after(new Date());
         if (!isModePayementValid) {
             throw new RuntimeException("Echec de la réservation : moyen de payement invalide");
@@ -98,7 +90,7 @@ public class HotelService {
                 referencePersonne,
                 request.getReferenceChambre(),
                 "RES-" + new Date().getTime(),
-                xmlGregorianCalendarToSqlDate(request.getDateArrivee()),
-                xmlGregorianCalendarToSqlDate(request.getDateArrivee()));
+                DateToSqlDate(request.getDateArrivee()),
+                DateToSqlDate(request.getDateArrivee()));
     }
 }
